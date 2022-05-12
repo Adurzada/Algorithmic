@@ -1,0 +1,15 @@
+import logging as lg
+import os
+from datetime import datetime as dt
+path = "./logs/"
+try:
+    os.mkdir(path)
+except OSError:
+    print("Failed %s" % path)
+else:
+    print("Succesfully created")
+now = dt.now().strftime("%m%d%h%H_%M")
+logname = path + now + ".log"
+lg.basicConfig(filename=logname,  format="%(asctime)s - %(levelname)s: %(message)s", encoding="utf-8")
+lg.getLogger().addHandler(lg.StreamHandler())
+lg.info("123")
